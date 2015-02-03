@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="robots" content="index, follow">
+
+	<title>Weblab Deep Learning Demo</title>
+	<meta name="author" content="Weblab"/>
+
+	<script src="js/jquery-2.1.3.js"></script>
+	<!-- <script src="js/underscore.js"></script> -->
+	
+	<script src="js/vis.js"></script>
+
+	<meta name="viewport" content="width=640, initial-scale=1"/>
+
+	<!-- <link rel="stylesheet" href="css/reset.min.css" type="text/css"/> -->
+	<link rel="stylesheet" href="css/news20_sda.css" type="text/css"/>
+</head>	
+<body>
+	<h1>Weblab Deep Learning Demo</h1>
+	<h2>Stacked Denoising Autoencoder for News20 Dataset</h2>
+	<div id="wrapper">
+		<div id="left_container">
+			<div id="documents">
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+				documents documents documents
+			</div>
+		</div>
+		<div id="right_container">
+			<div id="label">
+				<div id="prediction">comp.graphics</div>
+				<div id="answer">comp.sys.ibm.pc.hardware</div>
+			</div>
+			<div id="graph">
+				<canvas id="lossgraph">
+		        </canvas>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <script type="text/javascript" src="news20_sda.js"></script> -->
+	<script type="text/javascript" src="js/news20_sda_min.js"></script>
+</body>
+</html>
