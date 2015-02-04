@@ -74,9 +74,9 @@ var process_data = function(d) {
   $("#answer").text(classes_txt[d.answer]);
   
   scale = 255  // convert interval [0.0, 1.0] to [0, 255]
-  r = d.rgb[0] * scale;
-  g = d.rgb[1] * scale;
-  b = d.rgb[2] * scale;
+  r = Math.ceil(d.rgb[0] * scale);
+  g = Math.ceil(d.rgb[1] * scale);
+  b = Math.ceil(d.rgb[2] * scale);
   $("#documents").css("background-color", "rgb("+r.toString()+","+g.toString()+","+b.toString()+")");
   
   step_num++;
