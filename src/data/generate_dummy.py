@@ -12,15 +12,15 @@ response = urllib2.urlopen(word_site)
 txt = response.read()
 word_candidates = txt.splitlines()
 
-#n_doc = 50
-#min_words = 100
-#max_words = 150
-#output = "dummy_large.json"
+n_doc = 50
+min_words = 100
+max_words = 150
+output = "dummy_large.json"
 
-n_doc = 3
-min_words = 10
-max_words = 15
-output = "dummy_small.json"
+#n_doc = 3
+#min_words = 10
+#max_words = 15
+#output = "dummy_small.json"
 
 document = []
 error_rate = []
@@ -42,7 +42,7 @@ for doc in xrange(n_doc):
     pred_doc.append(random.randint(0, 19))
     rgb_epoch = []
     for word in xrange(len(document[doc].split(' '))):
-      rgb_epoch.append([random.uniform(0.0, 1.0) for _ in xrange(2)])
+      rgb_epoch.append([random.uniform(0.0, 1.0) for _ in xrange(3)])
     rgb_doc.append(rgb_epoch)
       
   predict.append(pred_doc)
