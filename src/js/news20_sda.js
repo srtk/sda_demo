@@ -9,34 +9,11 @@ var classes_txt = [
   'comp.sys.ibm.pc.hardware',
 ]
 
-
 $(window).load(function() {
-  // load_json("result.json");
-  // load_json("data/dummy.json");
-  load_dummy();
+  load_json("data/dummy.json");
   start_fun();
 });
 
-var load_dummy = function() {
-  data = {
-    // 'document': "text tex ef oijio weij efe joijoi",
-    'document':"documents documents documents documents documents aeijfoiaw weiojfoie eifjoeij ", 
-    'error_rate': [20.0, 10.0, 9.0, 8.0, 5.0, 3.0, 2.3, 1.5],
-    'predict': [1, 2, 1, 2, 1, 2, 1, 2],
-    'answer': [0, 1, 2, 0, 1, 2, 0, 1],
-    'rgb': [
-      [1.0, 0.3, 0.3],
-      [0.8, 0.8, 0.4],
-      [0.6, 0.9, 0.4],
-      [0.4, 1.0, 0.5],
-      [1.0, 0.4, 0.3],
-      [1.0, 0.5, 0.3],
-      [0.8, 0.6, 0.3],
-      [0.8, 0.7, 0.4],
-    ]
-  }
-  finish_loading = true
-}
 
 var load_json = function(filename) {
   $.getJSON(filename, function(json) {
@@ -61,7 +38,7 @@ var next_data = function() {
 
 var start_fun = function() {
   if (finish_loading) {
-    console.log('starting!');
+    console.log('finish loading json!');
     change_document(data['document'])
     setInterval(step, 1000);  
   } else {
@@ -88,19 +65,19 @@ var step = function() {
 var lossGraph = new cnnvis.Graph({step_horizon:20});
 var step_num = 0;
 var process_data = function(d) {
-  console.log('step '+step_num)
-  console.log(d)
+  console.log('step '+step_num);
+  console.log(d);
   lossGraph.add(step_num, d.error_rate);
   lossGraph.drawSelf($("#lossgraph")[0]);
 
-  $("#prediction").text(classes_txt[d.predict])
-  $("#answer").text(classes_txt[d.answer])
+  $("#prediction").text(classes_txt[d.predict]);
+  $("#answer").text(classes_txt[d.answer]);
   
   scale = 255  // convert interval [0.0, 1.0] to [0, 255]
-  r = d.rgb[0] * scale
-  g = d.rgb[1] * scale
-  b = d.rgb[2] * scale
-  $("#documents").css("background-color", "rgb("+r.toString()+","+g.toString()+","+b.toString()+")")
+  r = d.rgb[0] * scale;
+  g = d.rgb[1] * scale;
+  b = d.rgb[2] * scale;
+  $("#documents").css("background-color", "rgb("+r.toString()+","+g.toString()+","+b.toString()+")");
   
   step_num++;
 }
