@@ -17,7 +17,7 @@ var classes_txt = [
   "misc.forsale",
   "talk.politics.misc",
   "talk.politics.guns",
-  "talk.politics.mideast	",
+  "talk.politics.mideast",
   "talk.religion.misc",
   "alt.atheism",
   "soc.religion.christian"
@@ -42,7 +42,7 @@ var load_json = function(filename) {
 var start_fun = function() {
   if (finish_loading) {
     console.log('finish loading json!');
-    setInterval(step, 100);  
+    setInterval(step, 50);  
   } else {
     setTimeout(start_fun, 1000)
   }
@@ -79,18 +79,24 @@ var next_document = function() {
     next.answer = data['answer'][doc_index]
     next.rgb = data['rgb'][doc_index]
     doc_index += 1;
+    epoch_num = 0;
   }
   return next
 }
 
 var split_doc = null;
+var span_doc = null;
 var predict_doc = null;
 var rgb_doc = null;
 var lossGraph = new cnnvis.Graph({step_horizon:20});
 var step_num = 0;
 var change_document = function(doc) {
-  $('#documents').text(doc.document);
   split_doc = doc.document.replace(/\W+/g, ' ').split(' ');
+  span_doc = split_doc.reduce(function(prev, val) {
+    return prev+" <span>"+val+"</span>";
+  });
+  $('#documents').html(span_doc);
+  
   
   lossGraph.add(step_num, doc.error_rate);
   lossGraph.drawSelf($("#lossgraph")[0]);
@@ -103,27 +109,27 @@ var change_document = function(doc) {
 
 var epoch_num = 0;
 var next_epoch_data = function() {
-  if (!predict_doc || !rgb_doc) {
+  if (!predict_doc || !rgb_doc || epoch_num >= predict_doc.length || epoch_num >= rgb_doc.length) {
     return null;
   }
-  data = {};
-  data.predict = predict_doc[epoch_num];
-  data.rgb = rgb_doc[epoch_num];
+  d = {};
+  d.predict = predict_doc[epoch_num];
+  d.rgb = rgb_doc[epoch_num];
   epoch_num++;
-  return data;
+  return d;
 }
 
 var colors = null;
-var process_data = function(data) {
-  $("#prediction").text(classes_txt[data.predict]);
+var process_data = function(d) {
+  $("#prediction").text(classes_txt[d.predict]);
   
   scale = 255  // convert interval [0.0, 1.0] to [0, 255]
   len = split_doc.length;
   for (var i = 0; i < len; i++) {
-    r = Math.ceil(data.rgb[0] * scale);
-    g = Math.ceil(data.rgb[1] * scale);
-    b = Math.ceil(data.rgb[2] * scale);
-    $("#documents").css("background-color", "rgb("+r.toString()+","+g.toString()+","+b.toString()+")");
+    r = Math.ceil(d.rgb[i][0] * scale);
+    g = Math.ceil(d.rgb[i][1] * scale);
+    b = Math.ceil(d.rgb[i][2] * scale);
+    $("#documents > span").eq(i).css("background-color", "rgb("+r+","+g+","+b+")");
   }
   step_num++;
 }
