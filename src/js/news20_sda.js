@@ -42,7 +42,7 @@ var load_json = function(filename) {
 var start_fun = function() {
   if (finish_loading) {
     console.log('finish loading json!');
-    setInterval(step, 1000);  
+    setInterval(step, 100);  
   } else {
     setTimeout(start_fun, 1000)
   }
@@ -56,7 +56,7 @@ var step = function() {
   }
   next_epoch = next_epoch_data()
   if (next_epoch) {
-    process_epoch(next_epoch)
+    process_data(next_epoch)
   } else {
     next_doc = next_document()
     if (next_doc) {
@@ -89,9 +89,8 @@ var rgb_doc = null;
 var lossGraph = new cnnvis.Graph({step_horizon:20});
 var step_num = 0;
 var change_document = function(doc) {
-  $('#documents').text(doc);
-  //split_doc = doc.replace(/\W+/g, ' ').split(' ');
-  split_doc = doc.split(/\W+/)
+  $('#documents').text(doc.document);
+  split_doc = doc.document.replace(/\W+/g, ' ').split(' ');
   
   lossGraph.add(step_num, doc.error_rate);
   lossGraph.drawSelf($("#lossgraph")[0]);
