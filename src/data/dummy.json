@@ -1,8 +1,19 @@
 {
-"document": "text tex ef oijio weij efe joijoi",
-"error_rate": [20.0, 10.0, 9.0, 8.0, 5.0, 3.0, 2.3, 1.5],
-"predict": [1, 2, 1, 2, 1, 2, 1, 2],
+"document": [
+	     "text tex ef oijio weij efe joijoi",
+	     "weoifj wieojfoiej eoifjwoeifjoijowiejf wjefoij iejfi i ojwoeijfwoiejfow",
+	     "woifj oiwjefoie ijefi woeijfoweifjwo eifjiefj weoifjwoeifj eijfij efjeifEijo weofijwE woeifje",
+	     "weoifjWOi oiwjefOiewjFiejf iejFoiejFowEFoiwjeof wo eFiejf  owe foiejFoi eiofj",
+	     "woeifj  eifj eif oOieFoe iojoj weFowieFo i ei eif ie oFwoEFoej  foe foiwejFo weoifj",
+	     "iewFEOf eof ief oeiwjf oeiFoiEow oEojfoe fEijfoiiwjefo i o oef oeFoweFowej o",
+	     "woiefje oieFoe foiEofEo owejFoiejfo iejf oija;ifo wiejf oiejFoijFoFoe",
+	     "owiefjOiFoieoijo    oWeof oweFoweFo   oejf oeFowe of eo  o oewF;ajoFoe o o	oiwjf"
+	    ],
 "answer": [0, 1, 2, 0, 1, 2, 0, 1],
+"error_rate": [20.0, 10.0, 9.0, 8.0, 5.0, 3.0, 2.3, 1.5],
+
+"predict": [1, 2, 1, 2, 1, 2, 1, 2],
+
 "rgb": [
   [1.0, 0.3, 0.3],
   [1.0, 0.4, 0.3],
